@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Powerful powerlifting training program app with multiple training programs">
+        <meta name="theme-color" content="#72dde9">
+        <title>Powerlifting training program app</title>
+        <link rel="apple-touch-icon" href="/icons/apple192.png">
+        <style>
+            body {
+                margin: 0;
+                font-family: sans-serif;
+                text-align: center;
+                background: linear-gradient(to right, #6ce3e77a, #a0b0f862);
+                font-size: small;
+            }
+            th {
+                max-width: 4em;
+                vertical-align: bottom;
+                border: 0.1em dotted #0005;
+            }
+            td {
+                border: 0.1em solid #0005;
+                background-color: #ffffff5f;
+            }
+            caption {
+                font-size: larger;
+            }
+            table {
+                margin: 0.5em;
+                border-collapse: collapse;
+                border: 0.2em #fff0 solid;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            p {
+                padding: 0;
+                margin: 0;
+            }
+            legend {
+                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: medium;
+                padding: 0.1em 0.5em;
+                background-color: #ffffff80;
+                border-radius: 0.5em;
+            }
+            input[type=number] {
+                max-width: 4.5em;
+                padding: 0;
+                margin: 0;
+                border: 1px solid #eee;
+                background-color: #fffa;
+                text-align: right;
+                font-family: sans-serif;
+            }
+            input[type=text]:disabled {
+                width: 3em;
+                padding: 0;
+                margin: 0;
+                border: 1px solid #eee0;
+                font-family: sans-serif;
+                background-color: #fff0;
+                color: black;
+                text-align: center;
+            }
+            button {
+                border: 0;
+                /* background-color: transparent; */
+                background: white;
+                color: black;
+                text-align: center;
+                text-decoration: none;
+                font-size: large;
+                margin: 0.2em;
+                padding: 0.01em 0.2em;
+                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                /* max-width: 15em; */
+                line-height: 1.4em;
+            }
+            button:active {
+                background-color: lightgray;
+                filter: none;
+                transform: translateY(0.1em);
+            }
+            button:disabled,
+            button[disabled] {
+                background-color: lightgray;
+                filter: none;
+                transform: translateY(0.1em);
+            }
+            h3 {
+                width: fit-content;
+                margin: 0.3em;
+            }
+            th {
+                font-weight: normal;
+            }
+            .headerContainer {
+                top: 0;
+                z-index: 10;
+                margin: 0;
+                padding: 0;
+                position: sticky; top: 0;
+                background: linear-gradient(to right, #6ce3e7e0, #a0b0f8f0);
+                /* border-radius: 0.5em; */
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                box-shadow: 0 0 0.5em navy;
+            }
+            .titleBar {
+                justify-content: space-between;
+                display: flex;
+                flex-basis: 100%;
+                margin: 0.1em;
+                /* flex-wrap: wrap; */
+                /* text-align: left; */
+            }
+            .programHeader {
+                /* flex-basis: 80%; */
+                /* margin: 0; */
+                background-color: transparent;
+                font-family: sans-serif;
+                color: black;
+                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                /* display: inline-block; */
+                font-size: large;
+                /* max-width: 15em; */
+                margin: auto;
+            }
+            .programselect {
+                /* flex-basis: 20%; */
+                appearance: none;
+                -webkit-appearance: none;
+                border: none;
+                text-align-last:center;
+                background-color: white;
+                font-family: sans-serif;
+                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                margin: 0.1em;
+                font-size: xx-large;
+                width: 1em;
+                height: 1em;
+                padding: 0;
+                line-height: 1em;
+                display: inline-block;
+            }
+            .settingsMenuButton {
+                font-family: sans-serif;
+                /* filter: drop-shadow(0.11em 0.11em 0em #d46ce7d0); */
+                font-size: x-large;
+                padding: 0 0.1em;
+                width: 1.5em;
+            }
+            .settingsMenu {
+                display: flex;
+                flex-wrap: inherit;
+                flex-basis: 100%;
+                background-color: #0000001d;
+            }
+            .menuButton {
+                font-size: large;
+                /* filter: none; */
+                /* border: 1px solid #d46ce7d0; */
+                /* margin: 0; */
+            }
+            .createNewProgramButton {
+                background-color: lightgreen;
+            }
+            .buttonBar {
+                justify-content: space-between;
+                display: flex;
+                flex-basis: 100%;
+                margin: 0.1em;
+                flex-wrap: wrap;
+            }
+            .linkList {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                flex-basis: 100%;
+            }
+            .cyclelink {
+                color: black;
+                text-align: center;
+                text-decoration: none;
+                background-color: transparent;
+                margin: 0;
+                padding: 0;
+                font-size: small;
+                width: max-content;
+                filter: none;
+            }
+            .tightdiv {
+                width: fit-content;
+                flex-basis: content;
+                height: fit-content;
+                margin: 0 0.1em;
+                line-height: 1.5em;
+                padding: 0.1em 0.3em;
+                border-radius: 0.5em 0.5em 0 0;
+                border-width: 0;
+                box-shadow: 0 0 0.1em purple;
+                /* background: linear-gradient(to right, #6ce3e7, #a0b0f8); */
+            }
+            .dayButtonList {
+                position: absolute;
+                background: inherit;
+                width: inherit;
+                display: flex;
+                flex-direction: column;
+            }
+            .dayButton {
+                font-size: small;
+                width: max-content;
+                height: fit-content;
+            }
+            .dayButton:nth-child(even) {
+                background: #ffffff50;
+                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+            }
+            .dayButton:nth-child(odd) {
+                background: #0000000d;
+                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+            }
+            .shareLinkContainer {
+                flex-basis: 100%;
+                margin-top: 0.5em;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+            }
+            .shareStringContainer {
+                margin: 0.5em;
+                border: 0.2em dotted aliceblue;
+                padding-bottom: 0.3em;
+            }
+            .presentedlink {
+                width: 15em;
+                margin: 0.3em;
+                padding: 0.2em;
+                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+            }
+            .movementselect {
+                appearance: none;
+                -webkit-appearance: none;
+                border: none;
+                text-align-last:center;
+                font-size: large;
+                background-color: transparent;
+                font-family: sans-serif;
+            }
+            .selectProgramContainer {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                /* justify-content: space-between; */
+                z-index: 1;
+                background: linear-gradient(to right, #6ce3e7, #a0b0f8);
+            }
+            .programSelectRow {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .weekHeader {
+                margin: 0 0 0.7em 0;
+            }
+            .e1rm {
+                width: 4em;
+            }
+            .smallInput {
+                width: 2.7em;
+            }
+            .programContainer {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                column-gap: normal;
+                justify-content: center;
+            }
+            .dayContainer {
+                border: 0;
+                border-radius: 0.5em;
+                /* width: min-content; */
+                width: 100%;
+                padding: 0 0 0 0;
+                margin: 0.5em auto;
+                scroll-margin-top: 6em;
+            }
+            .dayContainer:nth-child(even) {
+                background: #ffffff50;
+                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+            }
+            .dayContainer:nth-child(odd) {
+                background: #0000000d;
+                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+            }
+            .movementContainer {
+                padding: 0 0.3em 0.3em 0.3em;
+            }
+            .sessionContainer {
+                padding: 0 1em 1em 1em;
+            }
+            .weekelement:nth-child(9n+1) {
+                background: linear-gradient(180deg, #6ce3e7, #79d6eb);
+            }
+            .weekelement:nth-child(9n+2) {
+                background: linear-gradient(180deg, #79d6eb, #80cfee);
+            }
+            .weekelement:nth-child(9n+3) {
+                background: linear-gradient(180deg, #80cfee, #94bcf4);
+            }
+            .weekelement:nth-child(9n+4) {
+                background: linear-gradient(180deg, #94bcf4, #a0b0f8);
+            }
+            .weekelement:nth-child(9n+5) {
+                background: linear-gradient(180deg, #a0b0f8, #a0b0f8);
+            }
+            .weekelement:nth-child(9n+6) {
+                background: linear-gradient(180deg, #a0b0f8, #94bcf4);
+            }
+            .weekelement:nth-child(9n+7) {
+                background: linear-gradient(180deg, #94bcf4, #80cfee);
+            }
+            .weekelement:nth-child(9n+8) {
+                background: linear-gradient(180deg, #80cfee, #79d6eb);
+            }
+            .weekelement:nth-child(9n+9) {
+                background: linear-gradient(180deg, #79d6eb, #6ce3e7);
+            }
+            .blockContainer {
+                padding: 0.5em;
+                border-radius: 0.5em;
+                margin: 0.5em;
+                scroll-margin-top: 5em;
+                height: fit-content;
+            }
+            .shareStringLabel {
+                display: inline-block;
+                font-size: x-small;
+                width: 15em;
+            }
+            .programEditorContainer {
+                flex-basis: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .innerDayEdit {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            .addMovementButton {
+                flex-basis: 100%;
+            }
+            .copyDayList {
+                flex-basis: 100%;
+                display: flex;
+                align-items: center;
+                font-size: medium;
+                padding: 0.3em;
+            }
+            .restDayText {
+                margin: 0.6em;
+            }
+            .editorFieldBox {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.2em;
+                max-width: 30em;
+                width: 80%;
+            }
+            .paramsContainer {
+                width: 100%;
+            }
+            .paramBox {
+                display: flex;
+                justify-content: flex-end;
+            }
+            .programSettingsContainer {
+                /* flex-basis: 100%; */
+                display: flex;
+                flex-direction: column;
+                margin-top: 0.2em;
+            }
+            .setParamButtonList {
+                flex-basis: 100%;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .addParamButton {
+                font-size: medium;
+                background-color: palegreen;
+            }
+            .closebutton {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                border: 0;
+                background-color: #fff5;
+            }
+            .cleanSlateContainer {
+                display: inline-block;
+                border: 0.2em dashed lightcoral;
+                padding: 0.5em;
+            }
+            .progressionContainer {
+                display: flex;
+                justify-content: space-between;
+                flex-basis: 100%;
+                border-bottom: 0.2em dotted gray;
+                margin: 0.2em;
+            }
+            .allDaysContainer {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                align-content: flex-start;
+                flex-basis: 100%;
+                width: 100%;
+            }
+            .dayEditContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                border: 0;
+                border-radius: 0.5em;
+                padding: 0 0 0 0;
+                margin-bottom: 1em;
+                flex-grow: 1;
+                width: 100%;
+            }
+            .dayEditContainer:nth-child(even) {
+                background-image: linear-gradient(
+                    135deg, #fdfb7650 25%, transparent 25%, 
+                    transparent 50%, #fdfb7650 50%, #fdfb7650 75%, 
+                    transparent 75%, transparent 100%);
+                background-size: 1em 1em;
+            }
+            .dayEditContainer:nth-child(odd) {
+                background-image: linear-gradient(
+                    135deg, #EE617D20 25%, transparent 25%, 
+                    transparent 50%, #EE617D20 50%, #EE617D20 75%, 
+                    transparent 75%, transparent 100%);
+                background-size: 1em 1em;
+            }
+            .dayEditLegend {
+                margin: 0;
+            }
+            .setContainer {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 0.5em;
+            }
+            .setContainer:nth-child(odd) {
+                background: #8eee6120;
+            }
+            .setContainer:nth-child(even) {
+                background: #6ce3e77a;
+            }
+            .movementEditContainer {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: #0000000d;
+                padding: 1em;
+                margin: 0.5em;
+                max-width: 30em;
+                height: fit-content;
+            }
+            .editorRemoveStuffButton {
+                background: lightpink;
+                color: black;
+                text-align: center;
+                text-decoration: none;
+                font-size: large;
+                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                height: fit-content;
+                margin: 0.3em;
+            }
+            .progressionLabel {
+                flex-basis: 25%;
+            }
+            .progressionSelect {
+                height: fit-content;
+                flex-basis: 20%;
+            }
+            .progressionEditor {
+                display: flex;
+                flex-basis: 40%;
+            }
+            .dumbmovementselect {
+                flex-basis: 100%;
+                height: fit-content;
+            }
+            .dayLegend {
+                font-size: smaller;
+                padding-left: 1em;
+            }
+            .copyDayButton {
+                background-color: aquamarine;
+            }
+            .clearButton {
+                background-color: lightpink;
+            }
+            [hidden]{
+                display:none;
+            }
+        </style>
+        
+        <link rel="manifest" href="manifest.json">
+    </head>
+
+    <body>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register("/serviceworker.js");
+            }
+        </script>
+        <script src="miniapp.js"></script>
+    </body>
+</html> 
