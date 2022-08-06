@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Powerful powerlifting training program app with multiple training programs">
+        <meta name="description" content="Training program app where you can create your own programs">
         <meta name="theme-color" content="#72dde9">
-        <title>Powerlifting training program app</title>
+        <title>Training program app</title>
         <link rel="apple-touch-icon" href="/icons/apple192.png">
         <style>
             body {
@@ -65,18 +65,21 @@
                 background-color: #fff0;
                 color: black;
                 text-align: center;
+                -webkit-appearance: none;
+                opacity:1;
             }
             button {
-                border: 0;
+                border: 1px solid black;
                 /* background-color: transparent; */
-                background: white;
+                border-radius: 0.3em;
+                background: transparent;
                 color: black;
                 text-align: center;
                 text-decoration: none;
                 font-size: large;
                 margin: 0.2em;
-                padding: 0.01em 0.2em;
-                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                padding: 0.1em 0.2em;
+                /* filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0); */
                 /* max-width: 15em; */
                 line-height: 1.4em;
             }
@@ -84,8 +87,8 @@
             button:hover,
             button:disabled,
             button[disabled] {
-                /* background-color: lightgray; */
-                filter: invert(50%);
+                color: gray;
+                /* filter: invert(100%); */
                 /* transform: translateY(0.1em); */
             }
             h3 {
@@ -136,7 +139,7 @@
                 text-align-last:center;
                 background-color: white;
                 font-family: sans-serif;
-                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                /* filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0); */
                 margin: 0.1em;
                 font-size: xx-large;
                 width: 1em;
@@ -149,6 +152,7 @@
                 font-family: sans-serif;
                 background-color: transparent;
                 /* filter: drop-shadow(0.11em 0.11em 0em #d46ce7d0); */
+                border: 0;
                 filter: none;
                 font-size: x-large;
                 padding: 0 0.1em;
@@ -183,6 +187,7 @@
                 flex-basis: 100%;
             }
             .cyclelink {
+                border: 0;
                 color: black;
                 text-align: center;
                 text-decoration: none;
@@ -219,11 +224,11 @@
             }
             .dayButton:nth-child(even) {
                 background: #ffffff50;
-                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+                /* filter: drop-shadow(0.2em 0.2em 0em #00000010); */
             }
             .dayButton:nth-child(odd) {
                 background: #0000000d;
-                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+                /* filter: drop-shadow(0.2em 0.2em 0em #00000010); */
             }
             .shareLinkContainer {
                 flex-basis: 100%;
@@ -241,7 +246,7 @@
                 width: 15em;
                 margin: 0.3em;
                 padding: 0.2em;
-                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                /* filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0); */
             }
             .movementselect {
                 appearance: none;
@@ -258,7 +263,10 @@
                 flex-direction: column;
                 /* justify-content: space-between; */
                 z-index: 1;
-                background: linear-gradient(to right, #6ce3e7e0, #a0b0f8f0);
+                background: #a9fafd;
+            }
+            .selectProgramButton {
+                border: 0;
             }
             .programSelectRow {
                 display: flex;
@@ -292,11 +300,11 @@
             }
             .dayContainer:nth-child(even) {
                 background: #ffffff50;
-                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+                /* filter: drop-shadow(0.2em 0.2em 0em #00000010); */
             }
             .dayContainer:nth-child(odd) {
                 background: #0000000d;
-                filter: drop-shadow(0.2em 0.2em 0em #00000010);
+                /* filter: drop-shadow(0.2em 0.2em 0em #00000010); */
             }
             .movementContainer {
                 padding: 0 0.3em 0.3em 0.3em;
@@ -414,6 +422,7 @@
                 flex-basis: 100%;
                 border-bottom: 0.2em dotted gray;
                 margin: 0.2em;
+                align-items: center;
             }
             .allDaysContainer {
                 display: flex;
@@ -480,7 +489,7 @@
                 text-align: center;
                 text-decoration: none;
                 font-size: large;
-                filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0);
+                /* filter: drop-shadow(0.1em 0.1em 0em #d46ce7d0); */
                 height: fit-content;
                 margin: 0.3em;
             }
@@ -506,8 +515,15 @@
             .copyDayButton {
                 background-color: aquamarine;
             }
+            .copyDayButton:disabled {
+                background-color: lightgray;
+                color: gray;
+            }
             .clearButton {
                 background-color: lightpink;
+            }
+            .editorButton {
+                font-size: small;
             }
             [hidden]{
                 display:none;
