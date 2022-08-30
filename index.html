@@ -17,38 +17,23 @@
             }
             th {
                 vertical-align: bottom;
-                /* border: 1px dotted #0005; */
             }
             td {
                 border-top: 1px solid #0005;
                 width: fit-content;
-                /* padding: 0; */
-                /* background-color: #ffffff5f; */
             }
             caption {
                 font-size: large;
                 margin-bottom: 5px;
             }
             table {
-                /* margin: 0.5em; */
                 border-collapse: collapse;
                 border: 0.2em #fff0 solid;
                 width: 95%;
-                /* margin-left: auto;
-                margin-right: auto; */
             }
             p {
                 padding: 0;
                 margin: 0;
-            }
-            legend {
-                width: auto;
-                margin-left: auto;
-                margin-right: auto;
-                font-size: medium;
-                padding: 0.1em 0.5em;
-                background-color: #ffffff80;
-                border-radius: 0.5em;
             }
             input[type=number] {
                 max-width: 4.5em;
@@ -105,13 +90,15 @@
                 font-weight: normal;
             }
             input[type=range] {
-                /* position: relative; */
-                /* top: 7em; */
                 width: 100%;
-                /* height: 10px; */
                 border: 0;
                 margin: 0;
                 padding: 0;
+            }
+            select {
+                background-color: white;
+                border: 1px solid;
+                border-radius: 4px;
             }
             .appContainer {
                 margin-bottom: 50vh;
@@ -141,21 +128,6 @@
                 font-size: large;
                 margin: auto;
             }
-            .programselect {
-                appearance: none;
-                -webkit-appearance: none;
-                border: none;
-                text-align-last:center;
-                background-color: white;
-                font-family: sans-serif;
-                margin: 0.1em;
-                font-size: xx-large;
-                width: 1em;
-                height: 1em;
-                padding: 0;
-                line-height: 1em;
-                display: inline-block;
-            }
             .settingsMenuButton {
                 font-family: sans-serif;
                 background-color: transparent;
@@ -165,24 +137,8 @@
                 padding: 0 0.1em;
                 width: 1.5em;
             }
-            .settingsMenu {
-                display: flex;
-                flex-wrap: inherit;
-                flex-basis: 100%;
-                background-color: #0000001d;
-            }
-            .menuButton {
-                font-size: large;
-            }
             .createNewProgramButton {
                 background-color: lightgreen;
-            }
-            .buttonBar {
-                justify-content: space-between;
-                display: flex;
-                flex-basis: 100%;
-                margin: 0.1em;
-                flex-wrap: wrap;
             }
             .linkList {
                 display: flex;
@@ -192,25 +148,14 @@
             }
             .cyclelink {
                 border: 0;
-                color: black;
-                text-align: center;
-                text-decoration: none;
-                background-color: transparent;
                 margin: 0;
                 padding: 0;
                 font-size: small;
-                width: max-content;
-                filter: none;
             }
             .tightdiv {
-                width: fit-content;
-                flex-basis: content;
-                height: fit-content;
                 margin: 0 0.1em;
-                line-height: 1.5em;
                 padding: 0.1em 0.3em;
                 border-radius: 0.5em 0.5em 0 0;
-                border-width: 0;
             }
             .dayButtonList {
                 position: absolute;
@@ -221,15 +166,9 @@
             }
             .dayButton {
                 font-size: small;
-                width: max-content;
-                height: fit-content;
                 border: 0;
             }
-            .dayButton:nth-child(even) {
-                background: transparent;
-            }
             .dayButton:nth-child(odd) {
-                /* background: #0000000d; */
                 background: #ffffff50;
             }
             .shareLinkContainer {
@@ -390,24 +329,49 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                background: #FEF7E7;
+            }
+            .editorLegend {
+                font-size: medium;
+                font-weight: bold;
+                padding: 0;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                align-items: center;
+            }
+            .editorLegendButtonList {
+                margin-right: 4px;
+            }
+            .editLegendButton {
+                border: 0;
+                margin-left: 30px;
+                padding: 0;
             }
             .innerDayEdit {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
             }
+            .addSetButton {
+                flex-basis: 100%;
+                background: #B9F0E0;
+            }
             .addMovementButton {
                 flex-basis: 100%;
+                background: #B6D7F0;
+            }
+            .fullWidth {
                 width: 100%;
-                max-width:inherit;
-                height: fit-content;
+            }
+            .showCopyDayButton {
+                background: #EC94B7;
             }
             .copyDayList {
                 flex-basis: 100%;
                 display: flex;
-                align-items: center;
-                font-size: medium;
-                padding: 0.3em;
+                justify-content: space-around;
+                flex-wrap: wrap;
             }
             .restDayText {
                 margin: 0.6em;
@@ -450,7 +414,7 @@
             }
             .addParamButton {
                 font-size: medium;
-                background-color: palegreen;
+                background-color: #D6FAC3;
             }
             .closebutton {
                 display: block;
@@ -473,60 +437,60 @@
                 align-items: center;
             }
             .allDaysContainer {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: column;
-                align-content: flex-start;
-                flex-basis: 100%;
                 width: 100%;
             }
             .dayEditContainer {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                flex-wrap: wrap;
                 border: 0;
-                border-radius: 0.5em;
-                padding: 0 0 0 0;
+                padding: 0;
                 margin-bottom: 1em;
                 flex-grow: 1;
-                width: 100%;
+                border-left: 8px solid #EC94B7;
             }
-            .dayEditContainer:nth-child(even) {
-                background-image: linear-gradient(
-                    135deg, #fdfb7650 25%, transparent 25%, 
-                    transparent 50%, #fdfb7650 50%, #fdfb7650 75%, 
-                    transparent 75%, transparent 100%);
-                background-size: 1em 1em;
-            }
-            .dayEditContainer:nth-child(odd) {
-                background-image: linear-gradient(
-                    135deg, #EE617D20 25%, transparent 25%, 
-                    transparent 50%, #EE617D20 50%, #EE617D20 75%, 
-                    transparent 75%, transparent 100%);
-                background-size: 1em 1em;
+            .dayEditContainer > .editorLegend {
+                background: #EC94B7;
+                top: 68px;
+                position: sticky;
+                z-index: 1;
             }
             .setContainer {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 padding: 0;
+                margin: 0;
+                margin-top: 4px;
+                border-left: 8px solid #B9F0E0;
             }
-            .setContainer:nth-child(odd) {
-                background: #8eee6120;
-            }
-            .setContainer:nth-child(even) {
-                background: #6ce3e77a;
+            .setContainer > .editorLegend {
+                background: #B9F0E0;
             }
             .movementEditContainer {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 flex-wrap: wrap;
-                background-color: #0000000d;
-                padding: 1em;
-                margin: 0.5em;
+                padding: 0;
+                margin: 0;
+                margin-top: 4px;
                 max-width: 30em;
                 height: fit-content;
+                border-left: 8px solid #B6D7F0;
+            }
+            .movementEditContainer > .editorLegend {
+                background: #B6D7F0;
+                top: 100px;
+                position: sticky;
+            }
+            .editorLegendTitle {
+                flex-grow: 1;
+                text-align: left;
+            }
+            .innerMovementEdit {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            .innerSetEdit {
+                width: 100%;
             }
             .editorRemoveStuffButton {
                 background: lightpink;
@@ -551,6 +515,8 @@
             .dumbmovementselect {
                 flex-basis: 100%;
                 height: fit-content;
+                font-size: large;
+                margin: 5px;
             }
             .dayLegend {
                 font-size: smaller;
@@ -575,9 +541,6 @@
             .editAllDay.pressed {
                 color: purple;
             }
-            /* .defaultDayLegend {
-                font-size: large;
-            } */
             .copyDayButton {
                 background-color: aquamarine;
             }
