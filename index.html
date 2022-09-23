@@ -247,11 +247,36 @@
                 font-size: small;
             }
             .programContainer {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                column-gap: 10px;
-                justify-content: space-around;
+                margin: 0 auto;
+                display: grid;
+                grid-auto-flow: column;
+                gap: 10px;
+                overflow-x: hidden;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x mandatory;
+                scroll-snap-stop: always;
+            }
+            .scrollLeftButton,
+            .scrollRightButton {
+                position: fixed;
+                width: 70px;
+                height: 70px;
+                bottom: 8%;
+                border: 0;
+                padding: 0;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 2em;
+                font-size: xxx-large;
+                background-color: #fff8;
+            }
+            .scrollLeftButton {
+                left: 0;
+                right: 70%;
+            }
+            .scrollRightButton {
+                left: 70%;
+                right: 0;
             }
             .dayContainer {
                 border: 0;
@@ -301,15 +326,21 @@
             .weekelement:nth-child(9n+9) {
                 background: #99e2ee;
             }
+            @media (max-width: 35em) {
+                .blockContainer {
+                    scroll-snap-align: center;
+                    object-fit: contain;
+                }
+            }
             .blockContainer {
+                width: 100vw;
                 padding: 0;
                 margin: 0;
                 scroll-margin-top: 5em;
                 height: fit-content;
                 min-width: max-content;
-                max-width: 40em;
+                max-width: 30em;
                 border-bottom: solid black 4px;
-                flex-grow: 1;
             }
             input[type=text].alwaysDisabled {
                 font-style: italic;
@@ -410,6 +441,8 @@
                 align-items: center;
                 width: 100%;
                 max-width: 30em;
+                overflow-y: scroll;
+                height: 100vh;
             }
             .programSettingsContainer > * {
                 width: 80%;
@@ -530,10 +563,29 @@
                 font-size: large;
                 margin: 5px;
             }
+            .defaultDayLegend {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+                margin: 15px 10px 0 10px;
+            }
+            .dayLegendElement {
+                flex: 1 1 0px;
+            }
+            .smallWeekText {
+                font-size: medium;
+                font-style: normal;
+                text-align: end;
+            }
+            h2.dayLegendElement {
+                margin: 0;
+            }
             .dayLegend {
-                font-size: smaller;
+                font-size: small;
                 font-style: italic;
-                padding-left: 1em;
+                text-align: start;
             }
             .dayCaption {
                 position: relative;
