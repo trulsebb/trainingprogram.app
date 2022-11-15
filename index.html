@@ -14,6 +14,7 @@
                 text-align: center;
                 background: linear-gradient(to right, #c6f3ff, #dae1fc);
                 font-size: small;
+                margin-bottom: 20vh;
             }
             th {
                 vertical-align: bottom;
@@ -111,10 +112,16 @@
                 border: 1px solid;
                 border-radius: 4px;
             }
-            .appContainer {
-                margin-bottom: 50vh;
+            #welcomeMessageContainer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-            .headerContainer {
+            #welcomeMessageContainer > * {
+                max-width: 80%;
+                margin: 0.5em;
+            }
+            #headerContainer {
                 top: 0;
                 z-index: 10;
                 margin: 0;
@@ -126,18 +133,66 @@
                 justify-content: center;
                 box-shadow: 0 0 5px navy;
             }
-            .titleBar {
+            #titleBar {
                 justify-content: space-between;
                 display: flex;
                 flex-basis: 100%;
-                margin: 0.1em;
+                margin: 0;
             }
-            .programHeader {
+            #selectProgramContainer {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                z-index: 1;
+                background: #a9fafd;
+                width: 100%;
+                max-width: 30em;
+            }
+            #programHeader {
                 background-color: transparent;
                 font-family: sans-serif;
                 color: black;
                 font-size: large;
                 margin: auto;
+            }
+            #linkList {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                flex-basis: 100%;
+            }
+            #programEditorContainer {
+                flex-basis: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: #FEF7E7;
+            }
+            #scrollLeftButton {
+                display: none;
+                left: 0;
+                right: 70%;
+            }
+            #scrollRightButton {
+                display: none;
+                left: 70%;
+                right: 0;
+            }
+            #welcomeMessageContainer {
+                display: none;
+            }
+            #welcomeProgramList {
+                margin: 0;
+                padding: 0;
+                max-height: 0;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                transition: max-height 1s ease-out;
+            }
+            #welcomeProgramList.visible {
+                max-height: 100%;
+                transition: max-height 1s ease-in;
             }
             .settingsMenuButton {
                 font-family: sans-serif;
@@ -151,22 +206,15 @@
             .createNewProgramButton {
                 background-color: lightgreen;
             }
-            .linkList {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                flex-basis: 100%;
-            }
+
             .cyclelink {
                 border: 0;
                 margin: 0;
                 padding: 0;
                 font-size: small;
             }
-            .tightdiv {
-                margin: 0 0.1em;
-                padding: 0.1em 0.3em;
-                border-radius: 0.5em 0.5em 0 0;
+            .buttonList {
+                white-space: nowrap;
             }
             .dayButtonList {
                 position: absolute;
@@ -199,16 +247,8 @@
                 margin: 0.3em;
                 padding: 0.2em;
             }
-            .selectProgramContainer {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                z-index: 1;
-                background: #a9fafd;
-                width: 100%;
-                max-width: 30em;
-            }
             .selectProgramButton {
+                text-align: left;
                 border: 0;
             }
             .programSelectRow {
@@ -246,7 +286,7 @@
             .resetRpeButton {
                 font-size: small;
             }
-            .programContainer {
+            #programContainer {
                 margin: 0 auto;
                 display: grid;
                 grid-auto-flow: column;
@@ -256,8 +296,7 @@
                 scroll-snap-type: x mandatory;
                 scroll-snap-stop: always;
             }
-            .scrollLeftButton,
-            .scrollRightButton {
+            .sideScrollButton {
                 position: fixed;
                 width: 70px;
                 height: 70px;
@@ -269,14 +308,6 @@
                 font-size: xxx-large;
                 background-color: #fff8;
                 z-index: 1;
-            }
-            .scrollLeftButton {
-                left: 0;
-                right: 70%;
-            }
-            .scrollRightButton {
-                left: 70%;
-                right: 0;
             }
             .dayContainer {
                 border: 0;
@@ -298,6 +329,11 @@
             }
             .sessionContainer {
                 padding: 0 1em 1em 1em;
+            }
+            .weekelement {
+                margin: 0 0.1em;
+                padding: 0.1em 0.3em;
+                border-radius: 0.5em 0.5em 0 0;
             }
             .weekelement:nth-child(9n+1) {
                 background: #99e2ee;
@@ -366,13 +402,6 @@
                 font-size: x-small;
                 width: 15em;
             }
-            .programEditorContainer {
-                flex-basis: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                background: #FEF7E7;
-            }
             .editorLegend {
                 font-size: medium;
                 font-weight: bold;
@@ -434,7 +463,7 @@
                 justify-content: flex-end;
                 align-items: center;
             }
-            .programSettingsContainer {
+            #programSettingsContainer {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -444,7 +473,7 @@
                 margin-top: 1em;
                 scroll-margin-top: 6em;
             }
-            .programSettingsContainer > * {
+            #programSettingsContainer > * {
                 width: 80%;
             }
             .settingsTable > tr > th {
@@ -493,7 +522,7 @@
             }
             .dayEditContainer > .editorLegend {
                 background: #EC94B7;
-                top: 68px;
+                top: 43px;
                 position: sticky;
                 z-index: 1;
             }
@@ -522,7 +551,7 @@
             }
             .movementEditContainer > .editorLegend {
                 background: #B6D7F0;
-                top: 100px;
+                top: 75px;
                 position: sticky;
             }
             .editorLegendTitle {
@@ -618,9 +647,6 @@
             .editorButton {
                 font-size: small;
             }
-            [hidden]{
-                display:none;
-            }
         </style>
         
         <link rel="manifest" href="manifest.json">
@@ -629,8 +655,58 @@
                 navigator.serviceWorker.register("/serviceworker.js");
             }
         </script>
-        <script src="miniapp.js"></script>
+        <script src="miniapp.js" defer></script>
     </head>
     <body>
+        <div id="headerContainer">
+            <div id="titleBar">
+                <div>
+                    <button id="programSelectButton" class="settingsMenuButton">≡</button>
+                    <div id="selectProgramContainer"></div>
+                </div>
+                <h1 id="programHeader"></h1>
+                <button id="programSettingsButton" class="settingsMenuButton">⚙</button>
+            </div>
+            <div id="linkList">
+                <template id="weeklinkTemplate">
+                    <div class="weekelement">
+                        <div class="dayButtonList"></div>
+                    </div>
+                </template>
+                <template id="cyclelinkTemplate">
+                    <button class="cyclelink">Week 1</button>
+                </template>
+            </div>
+        </div>
+        <div id="programEditorContainer"></div>
+        <div id="programSettingsContainer"></div>
+        <div id="programContainer">
+            <div id="welcomeMessageContainer">
+                <h1>Welcome to TrainingProgram.app</h1>
+                <h2>The training program app where you can create and share training programs.</h2>
+                <button id="welcomeProgramListButton">Select a program</button>
+                <div id="welcomeProgramList"></div>
+                <h2>OR</h2>
+                <button id="welcomeCreateNewButton" class="createNewProgramButton">Create a new program</button>
+            </div>
+            <button id="scrollLeftButton" class="sideScrollButton clearKeep">&lt;</button>
+            <button id="scrollRightButton" class="sideScrollButton clearKeep">&gt;</button>
+            <template id="movementContainerTemplate">
+                <table class="movementContainer">
+                    <!-- <caption class="dayCaption">
+                        Movement name
+                        <button class="editAllDay">✎</button>
+                    </caption> -->
+                    <tr>
+                        <th>✔</th>
+                        <th>Reps</th>
+                        <th>Weight</th>
+                        <th>%</th>
+                        <th>RPE</th>
+                        <th>e1RM</th>
+                    </tr>
+                </table>
+            </template>
+        </div>
     </body>
 </html> 
